@@ -22,7 +22,7 @@ initMap = () => {
         scrollWheelZoom: false
       });
       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
-        mapboxToken: '<your MAPBOX API KEY HERE>',
+        mapboxToken: 'pk.eyJ1IjoiY2hhaXRhbnlhMDEiLCJhIjoiY2pqZWpoZHNiMGd3azNrbXMxanF2ZDB0bSJ9.qIDY44peCUHt_g_e41pH6g',
         maxZoom: 18,
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
           '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -82,16 +82,24 @@ fetchRestaurantFromURL = (callback) => {
 fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurant.name;
+  name.setAttribute('aria-lable' , restaurant.name);
+
 
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
+  address.setAttribute('aria-lable' , restaurant.address);
+
 
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+   image.setAttribute('alt','Photo of the ' + restaurant.name + ' restaurant');
+
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
+  cuisine.setAttribute('aria-lable' , restaurant.address);
+
 
   // fill operating hours
   if (restaurant.operating_hours) {
@@ -109,13 +117,21 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
   for (let key in operatingHours) {
     const row = document.createElement('tr');
 
+
     const day = document.createElement('td');
     day.innerHTML = key;
+    day.setAttribute('aria-lable' , day.innerHTML);
+    day.setAttribute('tabIndex' , 0 );
     row.appendChild(day);
+
+    
 
     const time = document.createElement('td');
     time.innerHTML = operatingHours[key];
     row.appendChild(time);
+    time.setAttribute('aria-lable' , time.innerHTML);
+    time.setAttribute('tabIndex' , 0 );
+    
 
     hours.appendChild(row);
   }
@@ -128,6 +144,8 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
   const title = document.createElement('h2');
   title.innerHTML = 'Reviews';
+  title.setAttribute('aria-lable' , 'Reviews');
+  title.setAttribute('tabIndex' , 0 );
   container.appendChild(title);
 
   if (!reviews) {
@@ -148,21 +166,42 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  */
 createReviewHTML = (review) => {
   const li = document.createElement('li');
+
+  const div = document.createElement('div');
+  div.setAttribute("id" , "inner-div");
+  li.appendChild(div);
+
+
   const name = document.createElement('p');
+  name.setAttribute("id" , "p1");
   name.innerHTML = review.name;
-  li.appendChild(name);
+ name.setAttribute('aria-lable' , review.name);
+  name.setAttribute('tabIndex' , 0 );
+  div.appendChild(name);
 
   const date = document.createElement('p');
   date.innerHTML = review.date;
-  li.appendChild(date);
+  date.setAttribute("id" , "p2");
+  date.setAttribute('aria-lable' , review.date);
+  date.setAttribute('tabIndex' , 0 );
+  div.appendChild(date);
+
+  
 
   const rating = document.createElement('p');
   rating.innerHTML = `Rating: ${review.rating}`;
+  rating.className = 'rating'
+  rating.setAttribute('aria-lable' , ' Rating ' + review.rating );
+  rating.setAttribute('tabIndex' , 0 );
   li.appendChild(rating);
 
   const comments = document.createElement('p');
   comments.innerHTML = review.comments;
-  li.appendChild(comments);
+  comments.setAttribute('aria-lable' ,  review.comments);
+  comments.setAttribute('tabIndex' , 0 );
+
+  
+li.appendChild(comments);
 
   return li;
 }
@@ -173,6 +212,8 @@ createReviewHTML = (review) => {
 fillBreadcrumb = (restaurant=self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
+  li.setAttribute('aria-lable' , restaurant.name);
+  li.setAttribute('tabIndex' , 0 );
   li.innerHTML = restaurant.name;
   breadcrumb.appendChild(li);
 }

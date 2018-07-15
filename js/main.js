@@ -78,7 +78,7 @@ initMap = () => {
         scrollWheelZoom: false
       });
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
-    mapboxToken: '<your MAPBOX API KEY HERE>',
+    mapboxToken: 'pk.eyJ1IjoiY2hhaXRhbnlhMDEiLCJhIjoiY2pqZWpoZHNiMGd3azNrbXMxanF2ZDB0bSJ9.qIDY44peCUHt_g_e41pH6g',
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
       '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -160,6 +160,9 @@ createRestaurantHTML = (restaurant) => {
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
+  image.setAttribute('alt','Photo of the ' + restaurant.name + ' restaurant');
+   image.setAttribute('tabIndex' , 0 );
+  
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   li.append(image);
 
@@ -173,6 +176,8 @@ createRestaurantHTML = (restaurant) => {
 
   const address = document.createElement('p');
   address.innerHTML = restaurant.address;
+  address.setAttribute('aria-lable' , restaurant.address);
+  address.setAttribute('tabIndex' , 0 );
   li.append(address);
 
   const more = document.createElement('a');
