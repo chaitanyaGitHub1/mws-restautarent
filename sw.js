@@ -1,87 +1,80 @@
-var CACHE_NAME = 'my-site-cache-v1';
-var urlsToCache = [
-    '/',
-    './index.html',
-    './restaurant.html',
-    './css/styles.css',
-    './js/dbhelper.js',
-    './js/main.js',
-    './js/restaurant_info.js',
-    './data/restaurants.json',
-    './img/1.jpg',
-    './img/2.jpg',
-    './img/3.jpg',
-    './img/4.jpg',
-    './img/5.jpg',
-    './img/6.jpg',
-    './img/7.jpg',
-    './img/8.jpg',
-    './img/9.jpg',
-  './img/10.jpg',
+const filesToCache = [
+  "/",
+  "./index.html",
+  "./restaurant.html",
+  "./css/styles.css",
+  "./js/dbhelper.js",
+  "./js/main.js",
+  "./js/restaurant_info.js",
+  "./data/restaurants.json",
+  "./img/1.jpg",
+  "./img/2.jpg",
+  "./img/3.jpg",
+  "./img/4.jpg",
+  "./img/5.jpg",
+  "./img/6.jpg",
+  "./img/7.jpg",
+  "./img/8.jpg",
+  "./img/9.jpg",
+  "./img/10.jpg",
+  "pages/offline.html",
+  "pages/404.html",
+  "style/main.css"
 ];
 
-self.addEventListener('install', function(event) {
-  // Perform install steps
+const staticCacheName = "pages-cache-v5";
+
+self.addEventListener("install", event => {
+  //console.log("Attempting to install service worker and cache static assets");
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(function(cache) {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
+    caches.open(staticCacheName).then(cache => {
+      return cache.addAll(filesToCache);
+    })
   );
 });
 
-   self.addEventListener('fetch', function(event) {
-    event.respondWith(
-      caches.match(event.request)
-        .then(function(response) {
-          // Cache hit - return response
-          if (response) {
-            return response;
+self.addEventListener("activate", event => {
+  //console.log("Activating new service worker...");
+
+  const cacheWhitelist = [staticCacheName];
+
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
           }
-          return fetch(event.request);
-        }
-      )
-    );
-  });
-  
-  self.addEventListener('fetch', function(event) {
-    event.respondWith(
-      caches.match(event.request)
-        .then(function(response) {
-          // Cache hit - return response
-          if (response) {
-            return response;
-          }
-  
-          // IMPORTANT: Clone the request. A request is a stream and
-          // can only be consumed once. Since we are consuming this
-          // once by cache and once by the browser for fetch, we need
-          // to clone the response.
-          var fetchRequest = event.request.clone();
-  
-          return fetch(fetchRequest).then(
-            function(response) {
-              // Check if we received a valid response
-              if(!response || response.status !== 200 || response.type !== 'basic') {
-                return response;
-              }
-  
-              // IMPORTANT: Clone the response. A response is a stream
-              // and because we want the browser to consume the response
-              // as well as the cache consuming the response, we need
-              // to clone it so we have two streams.
-              var responseToCache = response.clone();
-  
-              caches.open(CACHE_NAME)
-                .then(function(cache) {
-                  cache.put(event.request, responseToCache);
-                });
-  
-              return response;
-            }
-          );
         })
       );
-  });
-  
+    })
+  );
+});
+
+self.addEventListener("fetch", event => {
+  //console.log("Fetch event for ", event.request.url);
+  event.respondWith(
+    caches
+      .match(event.request)
+      .then(response => {
+        if (response) {
+          //console.log("Found ", event.request.url, " in cache");
+          return response;
+        }
+        // console.log("Network request for ", event.request.url);
+        return fetch(event.request).then(response => {
+          if (response.status === 404) {
+            return caches.match("pages/404.html");
+          }
+          return caches.open(staticCacheName).then(cache => {
+            cache.put(event.request.url, response.clone());
+            return response;
+          });
+        });
+      })
+      .catch(error => {
+        //console.log("Error, ", error);
+        return caches.match("pages/offline.html");
+      })
+  );
+});
