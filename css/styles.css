@@ -1,42 +1,94 @@
 @charset "utf-8";
 /* CSS Document */
 
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono");
 
+.banner {
+  align-content: center;
+  display: none;
+  justify-content: center;
+  width: 100%;
 
-body,td,th,p{
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 10pt;
-	color: #333;
-	line-height: 1.5;
+  background-color: #01447e;
+}
+
+button {
+  background-color: #ff9800;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 36px;
+  letter-spacing: 0;
+  margin: 10px;
+  min-width: 64px;
+  overflow: hidden;
+  padding: 0 16px;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 30%;
+}
+
+body,
+td,
+th,
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #333;
+  line-height: 1.5;
 }
 body {
-	background-color: #fdfdfd;
-	margin: 0;
-	position:relative;
+  background-color: #fdfdfd;
+  margin: 0;
+  position: relative;
 }
-ul, li {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 10pt;
-	color: #333;
+ul,
+li {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #333;
 }
 a {
-	color: orange;
-	text-decoration: none;
+  color: orange;
+  text-decoration: none;
 }
-a:hover, a:focus {
-	color: #3397db;
-	text-decoration: none;
+a:hover,
+a:focus {
+  color: #3397db;
+  text-decoration: none;
 }
-a img{
-	border: none 0px #fff;
+a img {
+  border: none 0px #fff;
 }
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0 0 20px;
 }
-article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 #maincontent {
   background-color: #f3f3f3;
@@ -53,16 +105,13 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 }
 /* ====================== Navigation ====================== */
 nav {
-
-
   width: 100%;
   height: 80px;
   background-color: #252831;
   text-align: center;
-
 }
 nav h1 {
- padding-top: 25px;
+  padding-top: 25px;
   margin: auto;
 }
 nav h1 a {
@@ -81,14 +130,13 @@ nav h1 a {
   width: calc(100% - 80px);
 }
 
-
 /* Display list items side by side */
 #breadcrumb li {
   display: inline;
 }
 
 /* Add a slash symbol (/) before/behind each list item */
-#breadcrumb li+li:before {
+#breadcrumb li + li:before {
   padding: 8px;
   color: black;
   content: "/\00a0";
@@ -116,13 +164,11 @@ nav h1 a {
 .filter-options {
   width: 100%;
   height: 60px;
-  background-color: #3397DB;
+  background-color: #3397db;
   align-items: center;
   display: grid;
-  grid-template-areas: 
-       'results  neighborhoods-select cuisines-select' ;
+  grid-template-areas: "results  neighborhoods-select cuisines-select";
   grid-gap: 0px;
-      
 }
 .filter-options h2 {
   color: white;
@@ -134,7 +180,7 @@ nav h1 a {
 .filter-options select {
   background-color: white;
   border: 1px solid #fff;
-  font-family: Arial,sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 11pt;
   height: 35px;
   letter-spacing: 0;
@@ -142,27 +188,23 @@ nav h1 a {
   padding: 0 10px;
 
   border-radius: 3px;
- 
 }
-
 
 /* ====================== Restaurant Listing ====================== */
 #restaurants-list {
-
   background-color: #f3f3f3;
   list-style: outside none none;
   margin-left: 70px;
- 
+
   padding: 30px 15px 60px;
   text-align: center;
   display: grid;
   grid-template-columns: auto auto auto auto;
-
 }
 #restaurants-list li {
   background-color: #fff;
   border: 2px solid #ccc;
-  font-family: Arial,sans-serif;
+  font-family: Arial, sans-serif;
   margin: 15px;
   min-height: 380px;
   padding: 0 30px 25px;
@@ -179,7 +221,7 @@ nav h1 a {
 }
 #restaurants-list li h1 {
   color: #f18200;
-  font-family: Arial,sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 14pt;
   font-weight: 200;
   letter-spacing: 0;
@@ -217,12 +259,9 @@ table td {
   border: 1px solid #ccc;
   padding: 0.5em 1em;
 }
-table tr:nth-child(2n+1) {
+table tr:nth-child(2n + 1) {
   background-color: white;
-
 }
-
-
 
 .inside #footer {
   background-color: #444;
@@ -243,7 +282,7 @@ table tr:nth-child(2n+1) {
 #restaurant-name {
   padding-top: 20px;
   color: #f18200;
-  font-family: Arial,sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 22px;
   font-weight: 200;
   letter-spacing: 0;
@@ -251,10 +290,9 @@ table tr:nth-child(2n+1) {
   text-transform: uppercase;
   line-height: 1.1;
   grid-area: name;
-
 }
 #restaurant-img {
-	width: 100%;
+  width: 100%;
   border-radius: 13px 0 13px 0;
   grid-area: img;
 }
@@ -273,16 +311,14 @@ table tr:nth-child(2n+1) {
   padding: 2px 0;
   text-align: center;
   text-transform: uppercase;
-    width: 100%;
-    grid-area: cusisine;
+  width: 100%;
+  grid-area: cusisine;
 }
 #restaurant-hours {
-  
-    grid-area: hours;
+  grid-area: hours;
 }
 #reviews-container {
   padding: 30px 40px 80px;
-
 }
 #reviews-container h2 {
   color: #f58500;
@@ -295,12 +331,12 @@ table tr:nth-child(2n+1) {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: auto auto auto ;
+  grid-template-columns: auto auto auto;
 }
 
 #reviews-list li {
   background-color: #fff;
-    border: 2px solid #f3f3f3;
+  border: 2px solid #f3f3f3;
   display: block;
   list-style-type: none;
   margin: 0 0 30px;
@@ -318,8 +354,7 @@ table tr:nth-child(2n+1) {
   color: #666;
 }
 
-
-#inner-div{
+#inner-div {
   height: 50px;
   width: 100%;
   background-color: #252831;
@@ -329,20 +364,18 @@ table tr:nth-child(2n+1) {
 }
 
 #p1 {
-  font-family: 'Roboto Mono', monospace;
+  font-family: "Roboto Mono", monospace;
   font-size: 20px;
   padding: 10px;
 }
 
-#inner-div p{
+#inner-div p {
   color: #fdfdfd;
 }
 
-#p2{
+#p2 {
   padding-top: 20px;
 }
-
-
 
 #reviews-list li .rating {
   clear: both;
@@ -360,39 +393,31 @@ table tr:nth-child(2n+1) {
   padding: 20px;
 }
 
-#rdiv{
-  padding:65px;
+#rdiv {
+  padding: 65px;
 }
-
 
 .divCon {
   margin-left: 25px;
   display: grid;
-   grid-auto-columns: 1fr 2fr;
+  grid-auto-columns: 1fr 2fr;
   grid-template-areas: "ldiv rdiv";
 }
 
-
-  /* ==================== Media quiry for Responsive web ======================== */
-
+/* ==================== Media quiry for Responsive web ======================== */
 
 /* 
   ##Device = Tablets, Ipads (portrait)
   ##Screen = B/w 768px to 1024px
 */
 
-
-
 @media (min-width: 551px) and (max-width: 1024px) {
-
   #restaurants-list {
     grid-template-columns: auto auto;
     width: 100%;
     margin-left: 0px;
-   padding: 0px;
-   }
-
-
+    padding: 0px;
+  }
 
   .divCon {
     display: grid;
@@ -405,77 +430,64 @@ table tr:nth-child(2n+1) {
   .divCon {
     display: grid;
     grid-auto-columns: auto;
-    grid-template-areas: "ldiv "
-                            "rdiv";
+    grid-template-areas:
+      "ldiv "
+      "rdiv";
   }
 }
 
 @media (min-width: 1110px) and (max-width: 1500px) {
-  
   #restaurants-list {
-     grid-template-columns: auto auto auto;
-  } 
-
-  
-  
+    grid-template-columns: auto auto auto;
+  }
 }
-
-
 
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
 */
 
-
 @media (min-width: 300px) and (max-width: 550px) {
-  
   #restaurants-list {
     grid-template-columns: auto;
     margin-left: 0px;
-  } 
+  }
 
-  
   #restaurants-list li {
-   width: 80%;
+    width: 80%;
   }
 
   .filter-options {
     height: 160px;
     margin: 2px;
     display: grid;
-    grid-template-areas: 
-         'neighborhoods-select'
-         'cuisines-select' ;
+    grid-template-areas:
+      "neighborhoods-select"
+      "cuisines-select";
     grid-gap: 0px;
- }
+  }
 
   .filter-options h2 {
     margin-top: 15px;
-   }
+  }
 
-   #reviews-list {
-
+  #reviews-list {
     display: grid;
     grid-template-columns: auto;
   }
-  
-   .divCon {
+
+  .divCon {
     display: grid;
     grid-auto-columns: auto;
-    grid-template-areas: "ldiv "
-                            "rdiv";
+    grid-template-areas:
+      "ldiv "
+      "rdiv";
   }
   #reviews-list li {
-  
     width: 99%;
-
   }
-  
-   #rdiv{ padding: 0px; }
 
-
-
-   
+  #rdiv {
+    padding: 0px;
+  }
 }
-
