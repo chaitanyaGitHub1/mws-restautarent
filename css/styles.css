@@ -164,7 +164,7 @@ nav h1 a {
 .filter-options {
   width: 100%;
   height: 60px;
-  background-color: #3397db;
+  background-color: #0f0707;
   align-items: center;
   display: grid;
   grid-template-areas: "results  neighborhoods-select cuisines-select";
@@ -192,7 +192,7 @@ nav h1 a {
 
 /* ====================== Restaurant Listing ====================== */
 #restaurants-list {
-  background-color: #f3f3f3;
+  background-color: #eeeeee;
   list-style: outside none none;
   margin-left: 70px;
 
@@ -202,8 +202,8 @@ nav h1 a {
   grid-template-columns: auto auto auto auto;
 }
 #restaurants-list li {
-  background-color: #fff;
-  border: 2px solid #ccc;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(5, 4, 4);
   font-family: Arial, sans-serif;
   margin: 15px;
   min-height: 380px;
@@ -220,7 +220,7 @@ nav h1 a {
   min-width: 100%;
 }
 #restaurants-list li h1 {
-  color: #f18200;
+  color: rgb(0, 0, 0);
   font-family: Arial, sans-serif;
   font-size: 14pt;
   font-weight: 200;
@@ -234,7 +234,7 @@ nav h1 a {
   font-size: 11pt;
 }
 #restaurants-list li a {
-  background-color: orange;
+  background-color: rgb(0, 0, 0);
   border-bottom: 3px solid #eee;
   color: #fff;
   display: inline-block;
@@ -264,18 +264,34 @@ table tr:nth-child(2n + 1) {
 }
 
 .inside #footer {
-  background-color: #444;
-  color: #aaa;
+  text-align: center;
+}
+#footer {
+  background-color: #1a1a1a;
+  color: #ffffff;
   font-size: 8pt;
   letter-spacing: 1px;
   padding: 25px;
   text-align: center;
   text-transform: uppercase;
+  justify-content: center;
+}
+
+.inside #maincontent {
+  margin-top: 130px;
 }
 
 .inside #map-container {
   background: blue none repeat scroll 0 0;
   height: 400px;
+  /* right: 0; */
+  /* top: 80px; */
+  /* width: 100%; */
+}
+
+.inside #map {
+  background-color: #ffffff;
+  height: 100%;
   width: 100%;
 }
 
@@ -411,7 +427,7 @@ table tr:nth-child(2n + 1) {
   ##Screen = B/w 768px to 1024px
 */
 
-@media (min-width: 551px) and (max-width: 1024px) {
+@media (min-width: 581px) and (max-width: 1024px) {
   #restaurants-list {
     grid-template-columns: auto auto;
     width: 100%;
@@ -447,7 +463,7 @@ table tr:nth-child(2n + 1) {
   ##Screen = B/w 320px to 479px
 */
 
-@media (min-width: 300px) and (max-width: 550px) {
+@media (min-width: 320px) and (max-width: 480px) {
   #restaurants-list {
     grid-template-columns: auto;
     margin-left: 0px;
